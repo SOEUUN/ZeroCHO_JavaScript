@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>끝말잇기</title>
 </head>
+
 <body>
-  
+
   <div><span id="order">1</span>번째 참가자</div>
   <div>제시어 : <span id="word"></span></div>
   <input type="text">
@@ -15,23 +17,48 @@
   <script>
 
     const number = Number(prompt('몇 명이 참가하나요?'));
-    
+
     const $button = document.querySelector('button');
     const $input = document.querySelector('input');
     const $word = document.querySelector('#word');
+    const $order = document.querySelector('#order');
 
     let word; // 제시어
     let newWord; // 새로 입력한 단어
 
     const onClickButton = () => { // 제시어가 비어 있는가?
-      if(!word){
+      if (!word) {
         // 비어있다
         word = newWord; // 입력한 단어가 제시어가 된다.
         $word.textContent = word; // span의 값을 가져오기
-        $input.value = '';  // input은 안에 들어 있는 값이 value고 span혹은 다른 태그들은 textcontent이다.
-      }else{
+        const order = Number($order.textContent); // order === 문자열이기 때문에 숫자로 변환  / 현재 순서
+
+        if (order + 1 > number) {
+          $order.textContent = 1;
+        } else {
+          $order.textContent = order + 1;
+        }
+        $input.value = '';  // input, select, textarea와 같은 입력되는 태그는 value, 나머지는 texcontent
+        $input.focus(); // 커서 깜빡이기
+      } else {
         // 비어 있지 않다.
-        
+        if (word[word.length - 1] === newWord[0]) { // 문자열의 마지막 글자 (word.length -1)  / 제시어의 마지막이랑 새 단어랑 일지하면 올바름
+          word = newWord; // 입력한 단어가 제시어가 된다.
+          $word.textContent = word;
+          const order = Number($order.textContent); //현재 순서
+
+          if (order + 1 > number) {
+            $order.textContent = 1;
+          } else {
+            $order.textContent = order + 1;
+          }
+          $input.value = '';
+          $input.focus();
+        } else {  // 올바르지 않는가
+          alert('올바르지 않은 단어입니다!');
+          $input.value = '';
+          $input.focus();
+        }
       }
     };
 
@@ -41,10 +68,11 @@
 
     $button.addEventListener('click', onClickButton);
     $input.addEventListener('input', onInput);
-   
-    
+
+
   </script>
 
 
 </body>
+
 </html>
