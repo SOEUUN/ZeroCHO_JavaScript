@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>쿵쿵따</title>
+</head>
+<body>
+
+  <div><span id="order">1</span>번째 참가자</div>
+  <div>제시어 : <span id="word"></span></div>
+  <input type="text">
+  <button>입력</button>
+  <script>
+    // 몇 명이 참가할지 정하기
+    const person = Number(prompt("몇 명이 참가하나요?"));
+
+    // 순서를 정하기
+    // prompt 함수에서 취소를 누르면 코드 실행 x
+    if(person){
+      const $input = document.querySelector('input');
+      const $button = document.querySelector('button');
+      const $word = document.querySelector('#word');
+      const $order = document.querySelector('#order');
+  
+      // 제시어를 저장할 변수 만들기
+      let word;
+      
+      // 입력한 단어를 저장할 변수 만들기
+      let newWord;
+  
+      const onClickButton = () =>{
+        // 제시어가3글자 이면서 
+        // 제시어가 비어있거나 마지막 글자와 제시어의 첫글자가 같다면
+        if(newWord.length === 3 && (!word || [word.length -1] === newWord[0])){
+          word = newWord; // 입력된 단어가 제시어가 된다.
+          $word.textContent = word; //span의 값을 가져오기
+          const order = Number($order.textContent); // 현재 순서
+  
+          if(order + 1 > Number){ // 만약 현재 순서 + 1이 참가자 수보다 크다면
+            $order.textContent = 1; // 첫번째 사람으로 돌아가기
+          } else{
+            $order.textContent = order + 1; // 아니면 다음 사람으로 돌아가기
+          }
+        } else{
+          alert('올바르지 않은 단어입니다!');
+        }
+          // 입력창을 비우고 커서를 둔다.
+          $input.value = " ";
+          $input.focus();
+      };
+      const onInput = (event) => {
+        newWord = event.target.value;
+      };
+
+      $button.addEventListener('click', onClickButton);
+      $input.addEventListener('input', onInput);
+
+    }
+
+  </script>
+  
+</body>
+</html>
