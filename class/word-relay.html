@@ -22,10 +22,10 @@
 
     const yesOrNo = confirm('맞나요?'); // boolean값으로 나옴
 
-     // 콜백 함수(클릭하고 난 뒤 이어서 호출되기 때문) / 익명 함수  / 리스너 함수(이벤트 리스너에 들어있기 때문)
-    // document.querySelector('input').addEventListener('input', function () { // 글자 입력하는 함수는 input이다
-    //   console.log('글자 입력');      
-    // });
+      // 콜백 함수(클릭하고 난 뒤 이어서 호출되기 때문) / 익명 함수  / 리스너 함수(이벤트 리스너에 들어있기 때문)
+      // document.querySelector('input').addEventListener('input', function () { // 글자 입력하는 함수는 input이다
+      //   console.log('글자 입력');      
+      // });
 
     document.querySelector('input').addEventListener('input', (event) => { 
       console.log('글자 입력', event.target.value);      
