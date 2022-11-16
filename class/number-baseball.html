@@ -4,31 +4,16 @@
   <title>숫자야구</title>
 </head>
 <body>
+
 <form id="form">
-  <input type="text" id="input">  <!-- 요즘 input태그를 쓰면 form으로 많이 감싼다-->
+  <input type="text" id="input">  <!-- 요즘 input태그를 쓰면 form으로 많이 감싼다(표준에 맞음)-->
   <button>확인</button>
 </form>
+
 <div id="logs"></div>
+
 <script>
-  const $input = document.querySelector('#input');
-  const $form = document.querySelector('#form');
-  const $logs = document.querySelector('#logs');
-
-  const numbers = [];
-  for(let n = 0; n < 9; n += 1){
-    numbers.push(n + 1);
-  }
-
-  const answer = [];
-  for(let n = 0; n <= 4; n += 1){ // 4번 반복
-    const index = Math.floor(Math.random() * (numbers.length)); // 0 ~ 8 정수 / index의 값을 꺼내기 때문에 0 ~ 8까지 
-    // 9 - n보단 numbers.length가 좋다 위의 반복 되는 길이가 바뀔 수 있기 때문
-    // 9 - n일 경우 numbers에 있는 값을 꺼내서 answer에 넣어주는데 이때 뽑은 것은 numebrs에서 삭제 해준다
-    // 이럴때 문제점이 numbers는 8까지 도는데 numbers의 길이는 짧아지기 때문에 undefined가 나올 수 있기 때문에 뽑힐때 마다 n을 빼준다.
-    answer.push(numbers[index]);  // 뽑은 것은넣어주고
-    numbers.splice(index, 1); // 뽑은 것을 빼준다.
-  }
-  console.log(answer);
+  
 
 </script>
 </body>
